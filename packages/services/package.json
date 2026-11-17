@@ -7,6 +7,7 @@
     "./availability": "./src/availability.ts",
     "./bookings": "./src/bookings.ts",
     "./errors": "./src/errors.ts",
+    "./game-scores": "./src/game-scores.ts",
     "./members": "./src/members.ts",
     "./notes": "./src/notes.ts",
     "./rooms": "./src/rooms.ts",

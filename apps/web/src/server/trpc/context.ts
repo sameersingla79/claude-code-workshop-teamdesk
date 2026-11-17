@@ -7,6 +7,7 @@ import type { Database } from "@repo/db";
 import { createAnnouncementsService } from "@repo/services/announcements";
 import { createAvailabilityService } from "@repo/services/availability";
 import { createBookingsService } from "@repo/services/bookings";
+import { createGameScoresService } from "@repo/services/game-scores";
 import { createMembersService } from "@repo/services/members";
 import { createNotesService } from "@repo/services/notes";
 import { createRoomsService } from "@repo/services/rooms";
@@ -18,6 +19,7 @@ const createServices = (db: Database) => ({
   announcements: createAnnouncementsService(db),
   availability: createAvailabilityService(db),
   bookings: createBookingsService(db),
+  gameScores: createGameScoresService(db),
   members: createMembersService(db),
   notes: createNotesService(db),
   rooms: createRoomsService(db),
