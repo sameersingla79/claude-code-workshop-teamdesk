@@ -69,6 +69,12 @@ describe("game scores", () => {
     expect(top.map((s) => s.memberName)).toEqual(["Ana", "Ben"]);
   });
 
+  test("createGameScore rejects a negative score at the database level", async () => {
+    await expect(
+      createGameScore(db, { memberId: anaId, score: -1 })
+    ).rejects.toThrow();
+  });
+
   test("the same member can appear more than once", async () => {
     await createGameScore(db, { memberId: anaId, score: 200 });
     await createGameScore(db, { memberId: anaId, score: 100 });

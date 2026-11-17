@@ -3,6 +3,7 @@
 import { sql } from "drizzle-orm";
 import type { BaseSQLiteDatabase } from "drizzle-orm/sqlite-core";
 import {
+  check,
   index,
   integer,
   sqliteTable,
@@ -112,6 +113,9 @@ export const gameScores = sqliteTable(
   (table) => [
     // Backs the leaderboard order: best score first, earliest run wins a tie.
     index("game_scores_score_created").on(table.score, table.createdAt),
+    // Scores are never negative. The service checks this too; this is the
+    // backstop for any write that skips the service.
+    check("game_scores_score_non_negative", sql`${table.score} >= 0`),
   ]
 );
 
