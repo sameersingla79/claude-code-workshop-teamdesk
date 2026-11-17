@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import ThemeToggle from "./theme-toggle";
 
-export default function Header() {
+export default function Header({ children }: { children?: React.ReactNode }) {
   return (
     <header className="sticky top-0 z-50 border-border border-b bg-background/90 px-4 backdrop-blur-lg">
       <nav className="page-wrap flex flex-wrap items-center gap-x-3 gap-y-2 py-3 sm:py-4">
@@ -65,13 +65,7 @@ export default function Header() {
           >
             Tasks
           </Link>
-          <Link
-            activeProps={{ className: "nav-link is-active" }}
-            className="nav-link"
-            to="/arachnoid"
-          >
-            Arachnoid
-          </Link>
+          {children}
           <a
             className="nav-link"
             href="https://tanstack.com/start/latest/docs/framework/react/overview"

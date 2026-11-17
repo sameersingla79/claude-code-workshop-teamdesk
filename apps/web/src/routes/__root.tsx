@@ -1,5 +1,10 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import {
+  createRootRoute,
+  HeadContent,
+  Link,
+  Scripts,
+} from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { TooltipProvider } from "#/components/ui/tooltip";
 import Footer from "../components/footer";
@@ -44,7 +49,15 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body className="flex min-h-dvh flex-col font-sans antialiased [overflow-wrap:anywhere] selection:bg-primary/30">
         <TooltipProvider>
-          <Header />
+          <Header>
+            <Link
+              activeProps={{ className: "nav-link is-active" }}
+              className="nav-link"
+              to="/arachnoid"
+            >
+              Arachnoid
+            </Link>
+          </Header>
           {/* flex-1 pushes the footer to the bottom on short pages. */}
           <div className="flex-1 pb-20">{children}</div>
           <Footer />
