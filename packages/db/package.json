@@ -6,6 +6,7 @@
     ".": "./src/schema.ts",
     "./announcements": "./src/announcements.ts",
     "./bookings": "./src/bookings.ts",
+    "./game-scores": "./src/game-scores.ts",
     "./members": "./src/members.ts",
     "./notes": "./src/notes.ts",
     "./rooms": "./src/rooms.ts",

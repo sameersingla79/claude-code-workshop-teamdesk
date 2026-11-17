@@ -99,6 +99,22 @@ export const announcements = sqliteTable("announcements", {
   pinned: integer("pinned").notNull().default(0),
 });
 
+export const gameScores = sqliteTable(
+  "game_scores",
+  {
+    createdAt: text("created_at").notNull(),
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    memberId: integer("member_id")
+      .notNull()
+      .references(() => members.id),
+    score: integer("score").notNull(),
+  },
+  (table) => [
+    // Backs the leaderboard order: best score first, earliest run wins a tie.
+    index("game_scores_score_created").on(table.score, table.createdAt),
+  ]
+);
+
 /**
  * True when `error` is SQLite's UNIQUE constraint failure. Drizzle wraps driver
  * errors, so the message can sit on the error or on its cause.

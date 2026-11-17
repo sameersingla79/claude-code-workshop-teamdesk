@@ -61,6 +61,18 @@ export interface Announcement {
   pinned: boolean;
 }
 
+/** One finished Arachnoid run, joined to the player's name for the board. */
+export interface GameScore {
+  createdAt: string;
+  id: string;
+  memberId: string;
+  memberName: string;
+  score: number;
+}
+
+/** Upper bound for a submitted score, shared by the UI and the service. */
+export const GAME_SCORE_MAX = 10_000;
+
 export const MEMBER_NAME_MAX_LENGTH = 80;
 export const ROOM_NAME_MAX_LENGTH = 60;
 export const ROOM_CAPACITY_MAX = 200;
