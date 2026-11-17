@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as ArachnoidRouteImport } from './routes/arachnoid'
 import { Route as BookingsRouteImport } from './routes/bookings'
 import { Route as NotesRouteImport } from './routes/notes'
 import { Route as RoomsRouteImport } from './routes/rooms'
@@ -25,6 +26,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArachnoidRoute = ArachnoidRouteImport.update({
+  id: '/arachnoid',
+  path: '/arachnoid',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookingsRoute = BookingsRouteImport.update({
@@ -56,6 +62,7 @@ const TeamRoute = TeamRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/arachnoid': typeof ArachnoidRoute
   '/bookings': typeof BookingsRoute
   '/notes': typeof NotesRoute
   '/rooms': typeof RoomsRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/arachnoid': typeof ArachnoidRoute
   '/bookings': typeof BookingsRoute
   '/notes': typeof NotesRoute
   '/rooms': typeof RoomsRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/arachnoid': typeof ArachnoidRoute
   '/bookings': typeof BookingsRoute
   '/notes': typeof NotesRoute
   '/rooms': typeof RoomsRoute
@@ -84,13 +93,29 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/about' | '/bookings' | '/notes' | '/rooms' | '/tasks' | '/team'
+    | '/'
+    | '/about'
+    | '/arachnoid'
+    | '/bookings'
+    | '/notes'
+    | '/rooms'
+    | '/tasks'
+    | '/team'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/bookings' | '/notes' | '/rooms' | '/tasks' | '/team'
+  to:
+    | '/'
+    | '/about'
+    | '/arachnoid'
+    | '/bookings'
+    | '/notes'
+    | '/rooms'
+    | '/tasks'
+    | '/team'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/arachnoid'
     | '/bookings'
     | '/notes'
     | '/rooms'
@@ -101,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ArachnoidRoute: typeof ArachnoidRoute
   BookingsRoute: typeof BookingsRoute
   NotesRoute: typeof NotesRoute
   RoomsRoute: typeof RoomsRoute
@@ -122,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/arachnoid': {
+      id: '/arachnoid'
+      path: '/arachnoid'
+      fullPath: '/arachnoid'
+      preLoaderRoute: typeof ArachnoidRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bookings': {
@@ -165,6 +198,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ArachnoidRoute: ArachnoidRoute,
   BookingsRoute: BookingsRoute,
   NotesRoute: NotesRoute,
   RoomsRoute: RoomsRoute,
